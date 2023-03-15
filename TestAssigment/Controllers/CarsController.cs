@@ -40,7 +40,7 @@ namespace TestAssigment.Controllers
                 if (action == "brand")
                 {
                     Cars.Brand? brand = await _context.Brands.FirstOrDefaultAsync(data => data.Guid == Guid.Parse(guid));
-                    if (brand == null) return BadRequest(new { isError = true, message = "Entity is not fount!" });
+                    if (brand == null) return BadRequest(new { isError = true, message = "Entity is not found!" });
 
                     if (field == "active") brand.IsActive = !brand.IsActive;
                     if (field == "name") brand.Name = value;
@@ -50,7 +50,7 @@ namespace TestAssigment.Controllers
                 else if (action == "model")
                 {
                     Cars.Model? model = await _context.Models.FirstOrDefaultAsync(data => data.Guid == Guid.Parse(guid));
-                    if (model == null) return BadRequest(new { isError = true, message = "Entity is not fount!" });
+                    if (model == null) return BadRequest(new { isError = true, message = "Entity is not found!" });
 
                     if (field == "active") model.IsActive = !model.IsActive;
                     if (field == "name") model.Name = value;
