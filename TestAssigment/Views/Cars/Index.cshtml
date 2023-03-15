@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+@using TestAssigment.Models;
+@model List<ViewModel>
+
+<main class="full_width">
+    <section class="base_column align_center justify_start">
+        <div class="base_row align_center justify_end full_width">
+            <button onclick="document.location.replace(document.location.origin + '/create')">Добавить</button>
+        </div>
+        <div class="base_column align_center justify_start full_width full_height">
+            @{
+                foreach (var item in Model)
+                {
+                    string modelStateActive = String.Empty, cssClassNotActive = String.Empty,
+                    editorId = item.Brand.Guid.ToString() + "_editor",
+                    baseBlock = item.Brand.Guid.ToString() + "_base";
+
+                    modelStateActive = item.Brand.IsActive ? "активный" : "не активный";
+                    cssClassNotActive = item.Brand.IsActive ? String.Empty : "not_active";
+
+                    <div class="base_row align_center justify_space_between brand_item">
+                        <strong onclick="unwrappBrand()">+</strong>
+                        <strong id="@baseBlock" style="display: flex;" class="@cssClassNotActive">@item.Brand.Name</strong>
+                        <div id="@editorId" style="display: none;" class="base_row align_center">
+                            <input type="text" placeholder="@item.Brand.Name" onchange="changeElement('@item.Brand.Guid.ToString()', 'brand', this.value, 'name')" />
+                        </div>
+                        <strong class="@cssClassNotActive">@modelStateActive</strong>
+                        <div class="base_row align_center justify_space_between">
+                            <button id="@(editorId)_btn" onclick="setStateEditor('@editorId', '@baseBlock')">ред.</button>
+                            <button onclick="deleteElement('@item.Brand.Guid.ToString()', 'brand')">удалить</button>
+                        </div>
+                    </div>
+                    <div class="base_column align_center justify_space_between full_width">
+                        @foreach (var itemModel in item.Models)
+                        {
+                            if (item.Brand.IsActive)
+                            {
+                                modelStateActive = !itemModel.IsActive ? "не активный" : "активный";
+                                cssClassNotActive = !itemModel.IsActive ? "not_active" : "";
+                            }
+                            else
+                            {
+                                modelStateActive = "не активный";
+                                cssClassNotActive = "not_active";
+                            }
+
+                            editorId = itemModel.Guid.ToString() + "_editenb";
+                            baseBlock = itemModel.Guid.ToString() + "_baseds";
+
+                            <div id="@itemModel.Guid" class="base_row align_center justify_space_between model_item">
+                                <strong id="@baseBlock" style="display: flex" class="@cssClassNotActive">@itemModel.Name</strong>
+                                <div id="@editorId" class="base_row align_center" style="display: none">
+                                    <input type="text" placeholder="@itemModel.Name" onchange="changeElement('@itemModel.Guid.ToString()', 'model', this.value, 'name')"/>
+                                </div>
+                                <strong class="@cssClassNotActive">@modelStateActive</strong>
+                                <div class="base_row align_center justify_space_between">
+                                    <button id="@(editorId)_btn" onclick="setStateEditor('@editorId', '@baseBlock')">ред.</button>
+                                    <button onclick="deleteElement('@itemModel.Guid.ToString()', 'model')">удалить</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </section>
+    <b id="error_text" style="display: none;" class="message_box"></b>
+    <aside style="display: none">
+        <i id="state_unwrapp"></i>
+    </aside>
+</main>

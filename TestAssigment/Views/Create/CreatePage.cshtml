@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+@using TestAssigment.Models;
+@model List<ViewModel>
+
+<main class="full_width">
+    <strong>@ViewData["message"]</strong>
+    <section class="base_column align_center justify_start full_width">
+        <h3>Добавление брендов авто</h3>
+        <form id="brand_form" method="post" action="~/create/brands" class="base_column align_center justify_start full_width">
+            <div class="form_input_block">
+                <input id="id_brand_input" type="text" name="brand"/>
+                <button type="button" onclick="addValue('hid_brands_items', 'brand_add_list', 'id_brand_input')">Добавить еще</button>
+            </div>
+            <div id="hid_brands_items" style="display: none;"></div>
+            <div class="form_input_block">
+                <button type="submit">Сохранить</button>
+            </div>
+        </form>
+        <div id="brand_add_list" class="base_column align_center justify_start brand_add_list"></div>
+    </section>
+    <section class="base_column align_center justify_start full_width">
+        <h3>Добавлени моделей авто</h3>
+        <form id="model_form" method="post" action="~/create/models" class="base_column align_center justify_center full_width">
+            <div class="form_input_block">
+                <label>Выберете бренд:</label>
+                <select name="brandGuid" required>
+                    <option></option>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <option value="@item.Brand.Guid.ToString()">@item.Brand.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form_input_block">
+                <input id="id_model_input" type="text" name="model" />
+                <button type="button" onclick="addValue('hid_models_items', 'model_add_list', 'id_model_input')">Добавить еще</button>
+            </div>
+            <div id="hid_models_items" style="display: none;"></div>
+            <div class="form_input_block">
+                <button type="submit">Сохранить</button>
+            </div>
+            <div id="model_add_list" class="base_column align_center justify_start brand_add_list"></div>
+        </form>
+    </section>
+</main>

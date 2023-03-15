@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: whitesmoke;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    width: 60%;
+    background-color: white;
+    padding: 0px 10px 0px 10px;
+}
+
+header {
+    padding: 5px 10px 5px 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: black;
+    color: white;
+}
+
+.btn_service_download {
+    width: 60%;
+    margin-right: 25px;
+}
+
+input {
+    height: 25px;
+    border-radius: 5px;
+    width: 99%;
+    padding: 0;
+    margin-bottom: 5px;
+    border: 1px solid;
+}
+
+    input[type="checkbox"] {
+        width: 17px;
+        margin-right: 5px;
+    }
+
+button {
+    min-width: 120px;
+    height: 40px;
+    cursor: pointer;
+    padding: 0;
+    border: 1px solid white;
+    color: white;
+    background-color: black;
+    padding: 0px 5px 0px 5px;
+}
+
+    button:hover {
+        opacity: 50%;
+    }
+
+.form_input_block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+    .form_input_block sup {
+        color: red;
+    }
+
+.brand_item {
+    background-color: whitesmoke;
+    padding: 5px 10px 5px 10px;
+    width: calc(100% - 20px);
+    margin: 10px 0px 5px 0px;
+    border-bottom: 1px solid gray;
+    text-align: center;
+}
+
+    .brand_item strong {
+        width: 20%;
+        text-align: start;
+        font-size: 17px;
+    }
+
+    .brand_item button {
+        height: 25px;
+        min-width: 75px;
+        margin: 0px 5px 0px 5px;
+    }
+
+.model_item {
+    padding: 5px 10px 5px 10px;
+    width: calc(95% - 20px);
+    border-bottom: 1px solid #c2c2c27f
+}
+
+    .model_item strong {
+        text-align: start;
+        width: 20%;
+    }
+
+    .model_item button {
+        height: 23px;
+        min-width: 75px;
+        margin: 0px 5px 0px 5px;
+    }
+
+.not_active {
+    opacity: 40%;
+}
+.message_box {
+    position: fixed;
+    background-color: #ab6868;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    color: white;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    padding: 5px 0px 0px 5px;
+}
